@@ -1,0 +1,7 @@
+{
+    "name": "mapbase",
+    "author": "disk0",
+    "version": "0.0.2",
+    "description": "Additional/extended entities for base game elements",
+    "init": "res://MOD_CONTENT/mapbase/init.gd"
+}

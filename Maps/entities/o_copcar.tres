@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Props/copcar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://MOD_CONTENT/mapbase/Scripts/static_prop.gd" type="Script" id=3]
+
+[resource]
+script = ExtResource( 1 )
+class_options = "----------------------------------------------------------------"
+classname = "prop_copcar"
+description = "Static cop car"
+qodot_internal = false
+base_classes = [  ]
+class_properties = {
+"angle": 0.0,
+"scale": 1.0,
+"tilt": 0.0
+}
+class_property_descriptions = {
+}
+meta_properties = {
+"color": Color( 0, 0.0627451, 0.988235, 1 ),
+"size": AABB( -36, -20, -8, 36, 20, 16 )
+}
+node_options = "----------------------------------------------------------------"
+node_class = "QodotSpatial"
+transient_node = false
+scene = "----------------------------------------------------------------"
+scene_file = ExtResource( 2 )
+scripting = "----------------------------------------------------------------"
+script_class = ExtResource( 3 )

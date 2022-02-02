@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Props/fullpizza.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+class_options = "----------------------------------------------------------------"
+classname = "o_pizzafull"
+description = ""
+qodot_internal = false
+base_classes = [  ]
+class_properties = {
+}
+class_property_descriptions = {
+}
+meta_properties = {
+"color": Color( 0.945098, 1, 0.00784314, 1 ),
+"size": AABB( -4, -4, -2.5, 4, 4, 1.5 )
+}
+node_options = "----------------------------------------------------------------"
+node_class = "QodotSpatial"
+transient_node = false
+scene = "----------------------------------------------------------------"
+scene_file = ExtResource( 2 )
+scripting = "----------------------------------------------------------------"
