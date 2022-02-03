@@ -9,19 +9,28 @@ function local:rebuild()
     $modName = $moddir.basename
     $modJson = Get-Item $moddir\mod.json
     $tmpZipDirPath = "$ENV:TEMP\${modname}-zip"
-    if (Test-Path $tmpZipDirPath) { Remove-Item -r -v $tmpZipDirPath }
+    if (Test-Path $tmpZipDirPath) { Remove-Item -Force -Recurse -Verbose $tmpZipDirPath }
     mkdir $tmpZipDirPath
     $tmpZipDir = Get-Item $tmpZipDirPath
     $tmpZipModContentDir = "${tmpZipDir}\MOD_CONTENT\$modname"
 
-    $modInstallDir = "C:\csquad\user\mods\$modName"
+    $customModInstallDir = "C:\csquad\user\mods\$modName"
+    $modInstallDir =
+        if(Test-Path $customModInstallDir -PathType Container)
+        {
+            $customModInstallDir
+        }
+        else # Default expected user path for windows
+        {
+            "$ENV:APPDATA\Godot\app_userdata\Cruelty Squad\mods"
+        }
 
-    $copyExcludes = Write-Output mod.zip mod.json $tmpZipDir
+    $copyExcludes = Write-Output .git media mod.zip mod.json $tmpZipDir
 
     Copy-Item -Recurse -Verbose -Exclude $copyExcludes "$modDir" "$tmpZipModContentDir\"
 
     $modZipOutPath = "$modInstallDir\mod.zip"
-    if (Test-Path $modZipOutPath) { Remove-Item -v $modZipOutPath }
+    if (Test-Path $modZipOutPath) { Remove-Item -Verbose $modZipOutPath }
 
     [System.IO.Compression.ZipFile]::CreateFromDirectory($tmpZipdir, $modZipOutPath)
     Copy-Item -v -Force $modJSON $modInstallDir
@@ -29,7 +38,7 @@ function local:rebuild()
     if (Test-Path $modZipOutPath)
     {
         Write-Host -ForegroundColor Green 'Complete.'
-        Remove-Item -r -Verbose $tmpZipDir
+        Remove-Item -Recurse -Force -Verbose $tmpZipDir
     }
     else
     {
